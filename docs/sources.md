@@ -22,8 +22,9 @@
 | 자산 | 제작·재사용 기준 |
 |---|---|
 | [배너](../assets/banner.png) | README 배너의 예시 디자인과 기존 PieckPick 마스코트를 참고해 **OpenAI imagegen**으로 새로 제작. |
-| [기술 스택](../assets/technology-stack.svg) | 실제 사용한 기술만 분류해 제작한 SVG. AWS 로고는 [AWS Labs 아이콘](https://github.com/awslabs/aws-icons-for-plantuml/tree/e26e2c05daf8b6bc4c764669fc2be04c314ccb8c), 개발 도구 로고는 [Simple Icons](https://github.com/simple-icons/simple-icons/tree/98820a4dc8c363ca72fa2c0d294ea4a0a9bba75d)와 archify의 Simple Icons 16.28.0 벡터 사용 |
-| [전체 시스템 개요](../assets/architecture/system.svg) · [인프라 개요](../assets/architecture/infrastructure.svg) | 발표 내용과 고정 코드 경로를 대조해 제작 |
+| [기술 스택](../assets/technology-stack.svg) | 실제 사용한 기술만 분류해 제작한 SVG. AWS 로고는 [AWS Labs 아이콘](https://github.com/awslabs/aws-icons-for-plantuml/tree/e26e2c05daf8b6bc4c764669fc2be04c314ccb8c), 개발 도구 로고는 [Simple Icons](https://github.com/simple-icons/simple-icons/tree/98820a4dc8c363ca72fa2c0d294ea4a0a9bba75d)와 archify의 Simple Icons 16.28.0 벡터 사용. Slack은 [공식 미디어 킷](https://slack.com/media-kit)의 [공식 SVG](https://a.slack-edge.com/9cc0056/marketing/img/nav/logo.svg) 사용 |
+| [전체 시스템 개요](../assets/architecture/system.svg) | 발표 내용과 고정 코드 경로를 대조해 제작 |
+| [인프라 아키텍처](../assets/architecture/infrastructure.png) | Notion [최종 발표](https://app.notion.com/p/3ed8bee9ada4809eb9bcc5fdd1f07082)의 인프라 아키텍처 원본 PNG를 재가공 없이 사용 |
 | [상세 시스템](../assets/architecture/system-detail.svg) · [모니터링](../assets/architecture/monitoring.svg) | 팀의 기존 archify HTML 다이어그램에서 내보낸 SVG 재사용. 기존 상세 그림의 기준 커밋은 2026-10-04 소스이며, 최신 설명은 본 저장소의 상세 Markdown 문서를 따름 |
 | 프론트엔드 캡처 | 현행 코드의 자동 브라우저 검사에서 만든 화면. 캡처별 데이터 종류와 검증 범위는 [화면 흐름](frontend-flow.md)에 표시 |
 | 팀원 사진 | 각 팀원의 GitHub 프로필 이미지. 역할은 최종 발표, 계정과 이름은 프로필 및 팀 확인 기준 |

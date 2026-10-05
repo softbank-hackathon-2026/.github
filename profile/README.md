@@ -79,7 +79,9 @@
 
 ## 인프라 아키텍처
 
-<img src="https://raw.githubusercontent.com/softbank-hackathon-2026/.github/main/assets/architecture/infrastructure.svg" alt="CloudFront → 비공개 S3 또는 VPC Origin·internal ALB → ECS Fargate·private RDS. 플랫폼 경계와 별도 고객 워크로드·온프레미스 실행 환경" width="100%">
+<img src="https://raw.githubusercontent.com/softbank-hackathon-2026/.github/main/assets/architecture/infrastructure.png" alt="Notion 최종 발표의 인프라 아키텍처 원본: Cloudflare·CloudFront, Private VPC의 Internal ALB·ECS Fargate·RDS, Regional NAT와 온프레미스 연결" width="100%">
+
+*[최종 발표](https://app.notion.com/p/3ed8bee9ada4809eb9bcc5fdd1f07082)의 인프라 아키텍처 원본 이미지입니다.*
 
 **플랫폼 자체의 진입점은 CloudFront로 모으고, 내부 자원은 Private 영역에 둡니다.**
 
@@ -95,7 +97,7 @@
 
 ## 기술 스택
 
-<img src="https://raw.githubusercontent.com/softbank-hackathon-2026/.github/main/assets/technology-stack.svg" alt="AWS 인프라, React·TypeScript·Vite·Python·FastAPI·PostgreSQL, GitHub Actions·Docker·Terraform·Ansible, Cloudflare·Proxmox, CloudWatch·pytest, GitHub·Notion을 그룹별로 표시" width="100%">
+<img src="https://raw.githubusercontent.com/softbank-hackathon-2026/.github/main/assets/technology-stack.svg?v=20261005-slack" alt="AWS 인프라, React·TypeScript·Vite·Python·FastAPI·PostgreSQL, GitHub Actions·Docker·Terraform·Ansible, Cloudflare·Proxmox, CloudWatch·pytest, GitHub·Notion·Slack을 그룹별로 표시" width="100%">
 
 | 영역 | 주요 기술 |
 |---|---|
@@ -103,7 +105,7 @@
 | **AWS 플랫폼과 앱 실행** | CloudFront, S3, ALB, ECS Fargate, ECR, RDS, EC2, Lambda, IAM, ACM, Parameter Store, Secrets Manager |
 | **AI / 관찰** | Amazon Bedrock / Amazon CloudWatch |
 | **자동화 / 하이브리드** | GitHub Actions, Docker, Terraform, Ansible, Cloudflare Tunnel·Access, Proxmox |
-| **테스트 / 협업** | pytest, Playwright / GitHub, Notion |
+| **테스트 / 협업** | pytest, Playwright / GitHub, Notion, Slack |
 
 <a name="team"></a>
 
