@@ -4,58 +4,36 @@
 </p>
 
 <h1 align="center">PieckPick</h1>
+<p align="center">SoftBank Hackathon 2026 in Korea · 예선 · Team Freesia</p>
 <p align="center"><strong>인프라 담당자는 환경을 준비하고, 개발자는 앱 배포에 집중합니다.</strong></p>
-<p align="center">저장소와 배포 환경을 선택하면 AI가 실행 구성을 추천하고,<br>배포 과정과 결과를 한곳에서 확인하는 배포 관리 플랫폼입니다.</p>
+<p align="center">공개 GitHub 저장소를 AWS 또는 온프레미스에 배포하는 관리 콘솔입니다.<br>AI가 실행 환경과 설정값을 추천하고, 개발자가 구성안을 검토한 뒤 배포를 요청합니다.</p>
 
 <p align="center">
   <a href="https://sbh.howon.me/">서비스 콘솔</a> ·
   <a href="https://app.notion.com/p/3ed8bee9ada4809eb9bcc5fdd1f07082">최종 발표</a> ·
   <a href="#purpose">기획 의도</a> ·
-  <a href="#features">PieckPick의 제안</a> ·
+  <a href="#features">배포 흐름</a> ·
   <a href="#architecture">아키텍처</a> ·
+  <a href="#repositories">저장소</a> ·
   <a href="#team">팀 구성원</a>
 </p>
-
-> **SoftBank Hackathon 2026 in Korea · 예선 · Team Freesia**<br>
-> 서비스 이름은 **PieckPick**, 소스 저장소에는 기존 **Freesia** 이름을 유지합니다.
 
 <a name="purpose"></a>
 
 ## 기획 의도
 
-앱 하나를 배포하는 데에도 개발자와 인프라 담당자는 같은 질문을 반복합니다.
-
 > “어느 서브넷에 넣을까요?” “포트는요?” “CPU와 메모리는 얼마나 필요하죠?”
 
-개발자는 인프라 설정을 파악해야 하고, 인프라 담당자는 앱마다 환경과 실행 조건을 확인합니다. PieckPick은 이 커뮤니케이션 병목을 **준비된 환경 선택 → AI 추천 → 설정 검토 → 배포 → 관찰**의 흐름으로 줄이고자 했습니다.
-
-| 기존 배포 과정의 어려움 | PieckPick의 접근 |
-|---|---|
-| 앱마다 네트워크와 실행 환경을 다시 설명해야 함 | 기반 환경을 **Infra Space**로 제공하고 서비스명으로 선택 |
-| 코드에 맞는 실행 방식과 설정을 직접 판단해야 함 | 저장소를 분석해 **실행 후보와 배포 설정**을 추천 |
-| 배포 상태와 자원, 로그를 여러 도구에서 확인해야 함 | **애플리케이션 단위로 진행·구성·로그·지표**를 모아 확인 |
+팀이 앱을 배포할 때마다 개발자와 인프라 담당자는 네트워크와 실행 조건을 다시 맞춰야 했습니다. PieckPick에서 인프라 담당자는 공통 배포 환경을 **Infra Space**로 준비합니다. 개발자는 앱에 맞는 환경을 골라 저장소를 연결하고, 배포 진행 상황과 결과를 한곳에서 확인합니다.
 
 <a name="features"></a>
 
-## 서비스 기능 · PieckPick의 제안
+## 배포 흐름
 
-**환경을 준비하는 일과 앱을 배포하는 일을 분리합니다.** 인프라 담당자는 공통 환경을 준비하고, 개발자는 등록한 저장소를 해당 환경에 연결합니다.
-
-| 기능 | 사용자가 하는 일 | PieckPick이 제공하는 것 |
-|---|---|---|
-| **서비스별 환경 선택** | 준비된 Infra Space 선택 | 환경 특성과 연결된 앱을 같은 기준으로 확인 |
-| **저장소 연결과 AI 추천** | 공개 GitHub 저장소와 앱 연결 | 코드 분석, 실행 환경 후보와 근거, 설정값 추천 |
-| **배포 구성 검토** | 실행 방식과 설정값 확인 | 선택한 템플릿에 들어갈 구성을 배포 전에 검토 |
-| **AWS·온프레미스 배포** | 선택한 환경에 배포 요청 | GitHub Actions를 통해 AWS는 Terraform, 온프레미스는 Ansible 실행 |
-| **배포 결과 관찰** | 진행·전체 구성·로그·지표 확인 | SSE 진행 상태, 보고된 자원 트리, 지원되는 AWS 앱의 CloudWatch 데이터 |
-
-**기본 사용 흐름**
-
-1. **통합**에서 공개 GitHub 저장소를 등록합니다.
-2. **애플리케이션**에 저장소와 준비된 Infra Space를 연결합니다.
-3. **AI 분석 → 실행 환경 선택 → 구성안 검토**를 진행합니다.
-4. **배포 진행 → 전체 구성**에서 결과를 확인합니다.
-5. **로그·모니터링** 탭에서 실행 이후의 데이터를 조회합니다.
+1. **연결** — `통합`에서 공개 GitHub 저장소를 등록하고, `애플리케이션`에서 저장소와 Infra Space를 연결합니다.
+2. **분석과 검토** — AI가 코드를 분석해 실행 환경 후보와 근거를 제시합니다. 개발자는 후보를 선택하고 템플릿과 설정값을 검토합니다.
+3. **배포** — 개발자가 요청하면 GitHub Actions가 AWS에서는 Terraform, 온프레미스에서는 Ansible을 실행합니다. 콘솔은 Server-Sent Events(SSE)로 진행 상황을 받아 표시합니다.
+4. **결과 확인** — `전체 구성`에서 보고된 자원이나 Ansible 작업을 확인합니다. 지원되는 AWS 앱의 로그와 지표는 별도 탭에서 조회합니다.
 
 [화면과 사용 흐름 보기](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/frontend-flow.md) · [AI 추천 과정 보기](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/ai-recommendation.md)
 
@@ -73,7 +51,7 @@
 | **실행기 · GitHub Actions** | 소스 빌드와 템플릿 기반 배포, 결과 콜백 |
 | **관찰 · CloudWatch** | 지원되는 AWS 고객 앱의 지표·로그를 백엔드가 읽어 콘솔에 전달 |
 
-프론트엔드는 배포를 요청하고 결과를 표시합니다. 실제 자원 구성과 앱 실행은 워크플로가 담당하며, **AI의 추천과 배포 실행을 구분**합니다. AI 분석 결과는 기존 템플릿과 설정값에 연결됩니다.
+**AI가 추천하고 GitHub Actions가 실행합니다.** 제어 서버는 개발자가 검토한 템플릿과 설정값으로 워크플로를 요청하고, 실행 결과를 콘솔에 전달합니다.
 
 [상세 시스템 구조도](https://github.com/softbank-hackathon-2026/.github/blob/main/assets/architecture/system-detail.svg) · [CI/CD 실행 흐름](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/cicd.md) · [모니터링 구성](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/monitoring.md)
 
@@ -106,6 +84,38 @@
 | **AI / 관찰** | Amazon Bedrock / Amazon CloudWatch |
 | **자동화 / 하이브리드** | GitHub Actions, Docker, Terraform, Ansible, Cloudflare Tunnel·Access, Proxmox |
 | **테스트 / 협업** | pytest, Playwright / GitHub, Notion, Slack |
+
+<a name="repositories"></a>
+
+## 소스 저장소
+
+서비스 이름은 **PieckPick**이며, 프런트엔드와 백엔드 저장소에는 팀 이름 **Freesia**를 사용합니다.
+
+| 저장소 | 포함하는 내용 |
+|---|---|
+| [Freesia-Frontend](https://github.com/softbank-hackathon-2026/Freesia-Frontend) | 관리 콘솔, API 연동, 화면 검증 |
+| [Freesia-backend](https://github.com/softbank-hackathon-2026/Freesia-backend) | 앱·인프라·분석·배포·모니터링 API |
+| [platform-terraform](https://github.com/softbank-hackathon-2026/platform-terraform) | 플랫폼의 AWS 기반 인프라 |
+| [workload-terraform](https://github.com/softbank-hackathon-2026/workload-terraform) | 고객 앱을 위한 기반 환경 |
+| [workload-deploy](https://github.com/softbank-hackathon-2026/workload-deploy) | AWS·온프레미스 앱 실행·정리 워크플로와 템플릿 |
+
+샘플 앱 · [sample-shop](https://github.com/softbank-hackathon-2026/sample-shop) · [shop-api](https://github.com/softbank-hackathon-2026/shop-api)
+
+## 상세 문서
+
+| 주제 | 문서 |
+|---|---|
+| 콘솔과 AI | [화면 흐름](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/frontend-flow.md) · [AI 추천](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/ai-recommendation.md) |
+| 인프라 | [네트워크 구성](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/infrastructure.md) · [AWS 계정과 권한](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/aws-organizations.md) |
+| 배포와 운영 | [CI/CD](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/cicd.md) · [모니터링](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/monitoring.md) |
+
+## 현재 범위와 다음 목표
+
+- **코드에서 확인한 범위**는 저장소 등록, AI 분석과 구성 검토, 배포 워크플로 실행 요청과 콜백, 진행·자원 표시, 지원되는 AWS 앱의 로그와 지표 조회입니다.
+- **별도 환경 검증이 필요한 범위**는 실행 환경별 배포와 앱 접속, 공유 ALB의 앱별 지표, 온프레미스 SSH·배포 연결입니다. 인프라 생성 화면의 AI 대화와 Terraform Apply는 데모입니다.
+- **다음 목표**는 인프라 변경에 따른 AI 재추천과 AWS Transit Gateway(TGW) 중심의 통합 네트워크입니다.
+
+2026-10-05에 확인한 고정 소스와 최종 발표를 기준으로 정리했습니다. [소스와 이미지 출처](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/sources.md)
 
 <a name="team"></a>
 
@@ -153,37 +163,3 @@
 </table>
 
 역할은 [최종 발표 자료](https://app.notion.com/p/3ed8bee9ada4809eb9bcc5fdd1f07082)의 분담을 따릅니다.
-
-## 소스 저장소
-
-| 저장소 | 포함하는 내용 |
-|---|---|
-| [Freesia-Frontend](https://github.com/softbank-hackathon-2026/Freesia-Frontend) | 관리 콘솔, API 연동, 화면 검증 |
-| [Freesia-backend](https://github.com/softbank-hackathon-2026/Freesia-backend) | 앱·인프라·분석·배포·모니터링 API |
-| [platform-terraform](https://github.com/softbank-hackathon-2026/platform-terraform) | 플랫폼의 AWS 기반 인프라 |
-| [workload-terraform](https://github.com/softbank-hackathon-2026/workload-terraform) | 고객 앱을 위한 기반 환경 |
-| [workload-deploy](https://github.com/softbank-hackathon-2026/workload-deploy) | AWS·온프레미스 앱 실행·정리 워크플로와 템플릿 |
-
-샘플 앱: [sample-shop](https://github.com/softbank-hackathon-2026/sample-shop) · [shop-api](https://github.com/softbank-hackathon-2026/shop-api)
-
-## 상세 문서
-
-| 문서 | 확인할 내용 |
-|---|---|
-| [AWS Organizations](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/aws-organizations.md) · [인프라 상세](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/infrastructure.md) | 계정·OU·권한 경계, 플랫폼과 워크로드의 네트워크 |
-| [CI/CD](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/cicd.md) | 콘솔·백엔드 자체 배포와 고객 앱 배포의 차이 |
-| [프론트 화면 흐름](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/frontend-flow.md) | 저장소 등록부터 배포·전체 구성·관찰까지 |
-| [AI 추천 과정](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/ai-recommendation.md) | 분석 입력, 실행 후보, 설정 추천과 검토 |
-| [모니터링](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/monitoring.md) | 실행 환경별 지표·로그, 조회 방식과 지원 상태 |
-
-## 현재 범위와 다음 목표
-
-| 구분 | 내용 |
-|---|---|
-| **코드에서 확인한 범위** | 저장소 등록, 앱 분석·구성 검토, 워크플로 실행·콜백, 진행·자원 표시, 지원되는 AWS 앱의 로그·지표 조회 |
-| **환경 확인이 필요한 범위** | 실행 환경별 실제 배포와 앱 접속, 공유 ALB의 앱별 지표, 온프레미스 SSH·배포 연결 |
-| **확장 목표** | 기반 인프라 변경에 따른 AI 재추천, Cloudflare Tunnel 연결을 TGW 중심의 통합 네트워크로 발전 |
-
-인프라 생성 화면의 AI 대화·Terraform Apply는 데모 흐름입니다. 현재 문서는 **2026-10-05에 확인한 고정 GitHub 소스와 최종 발표**를 바탕으로 작성했으며, 운영 중인 모든 경로의 성공을 보장하는 자료는 아닙니다. 상세 구현 범위와 각 문서의 코드 근거를 함께 확인해 주세요.
-
-[확인한 소스와 이미지 출처](https://github.com/softbank-hackathon-2026/.github/blob/main/docs/sources.md)
